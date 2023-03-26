@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Wazirx Spot API
+  description: Official WazirX Trading Platform API.
+  version: 1.0.0
+servers:
+  - url: https://api.wazirx.com
+tags:
+  - name: Common APIs
+  - name: Common APIs > General APIs
+  - name: Common APIs > Public APIs
+paths:
+  /sapi/v1/exchangeInfo:
+    get:
+      tags:
+        - Common APIs > General APIs
+      summary: Exchange Info
+      description: Returns the current system status
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /sapi/v1/tickers/24hr:
+    get:
+      tags:
+        - Common APIs > Public APIs
+      summary: Tickers
+      description: 24 hour rolling window price change statistics
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /sapi/v1/ticker/24hr:
+    get:
+      tags:
+        - Common APIs > Public APIs
+      summary: Ticker
+      description: 24 hour rolling window price change statistics for a requested market
+      parameters:
+        - name: symbol
+          in: query
+          schema:
+            type: string
+          example: btcinr
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /sapi/v1/depth:
+    get:
+      tags:
+        - Common APIs > Public APIs
+      summary: Order Book Depth
+      description: 24 hour rolling window price change statistics for a requested market
+      parameters:
+        - name: symbol
+          in: query
+          schema:
+            type: string
+          example: btcinr
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: >-
+            Default 20; max 1000. Valid limits:[1, 5, 10, 20, 50, 100, 500,
+            1000]
+          example: "10"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /sapi/v1/trades:
+    get:
+      tags:
+        - Common APIs > Public APIs
+      summary: Recent Trades
+      description: >-
+        Get recent trades on market. Trades are sorted in latest to oldest
+        (descending) order
+      parameters:
+        - name: symbol
+          in: query
+          schema:
+            type: string
+          example: btcinr
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Default 500; max 1000.
+          example: "10"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
