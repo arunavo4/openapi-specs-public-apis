@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Wazirx Spot API",
+    "description": "Official WazirX Crypto Trading Platform API enables users to retrieve information on trading symbols, 24-hour trading data, order book depth, and recent trades.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.wazirx.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Common APIs"
+    },
+    {
+      "name": "Common APIs > General APIs"
+    },
+    {
+      "name": "Common APIs > Public APIs"
+    }
+  ],
+  "paths": {
+    "/sapi/v1/exchangeInfo": {
+      "get": {
+        "tags": [
+          "Common APIs > General APIs"
+        ],
+        "summary": "Exchange Info",
+        "description": "Retrieve information on all available trading symbols, including their current trading status, base and quote assets, precision, allowed order types, and related filters.",
+        "operationId": "getExchangeInfo",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/sapi/v1/tickers/24hr": {
+      "get": {
+        "tags": [
+          "Common APIs > Public APIs"
+        ],
+        "summary": "All Tickers 24-hour rolling window price",
+        "description": "Retrieve 24-hour rolling window price change data for all symbols, including prices, volume, bid/ask prices, and timestamp",
+        "operationId": "getAllTickers24hr",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/sapi/v1/ticker/24hr": {
+      "get": {
+        "tags": [
+          "Common APIs > Public APIs"
+        ],
+        "summary": "Ticker 24-hour rolling window price",
+        "description": "Retrieve 24-hour rolling window price change data for a symbol, including prices, volume, bid/ask prices, and timestamp",
+        "operationId": "getTicker24hr",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "btcinr"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/sapi/v1/depth": {
+      "get": {
+        "tags": [
+          "Common APIs > Public APIs"
+        ],
+        "summary": "Order Book Depth for a Ticker",
+        "description": "Obtain the order book depth for a specified symbol, including the last update timestamp, ask and bid prices, and corresponding quantities.",
+        "operationId": "getOrderBookDepth",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "btcinr"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Default 20; max 1000. Valid limits:[1, 5, 10, 20, 50, 100, 500, 1000]",
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/sapi/v1/trades": {
+      "get": {
+        "tags": [
+          "Common APIs > Public APIs"
+        ],
+        "summary": "Recent Trades for a Ticker",
+        "description": "Retrieve recent trades for a specified symbol, including trade ID, price, quantity, quote quantity, timestamp, and buyer maker status.",
+        "operationId": "getRecentTrades",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "btcinr"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Default 500; max 1000.",
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
