@@ -44,6 +44,7 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
           schema:
             type: string
           example: btcinr
@@ -62,6 +63,7 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
           schema:
             type: string
           example: btcinr
@@ -88,6 +90,7 @@ paths:
       parameters:
         - name: symbol
           in: query
+          required: true
           schema:
             type: string
           example: btcinr
